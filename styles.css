@@ -722,3 +722,9 @@ footer ul li {
         grid-template-columns: repeat(1,1fr);
     }
 }
+
+@media(max-width: 400px) {
+    .home-content h3 {
+        font-size: 2.4rem;
+    }
+}
