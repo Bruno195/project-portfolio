@@ -1,0 +1,615 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ds-dark-green: #282c20;
+    --ds-black: #111112;
+    --ds-lime: #d2ff00;
+    --ds-lime-off: #b2c73a;
+    --ds-green-off-white-1: #dde1d2;
+    --ds-green-off-white-2: #f4f4ed;
+    --ds-grey-1: #ebeee0;
+    --ds-grey-on-track: #535450;
+    --ds-dark-green-tint-1: #3b3c38;
+    --ds-dark-green-tint-2: #b4b8a5;
+    --ds-green-light: #b9bbad;
+    --ds-white: #111112;
+
+    --ds-font: 'Mona Sans', Arial, sans-serif;
+
+    --ds-text-impact: 7.9375rem;
+    --ds-text-h1: 4rem;
+    --ds-text-h2: 4.5rem;
+    --ds-text-h3: 2rem;
+    --ds-text-h4: 1.5rem;
+    --ds-text-h5: 1.2rem;
+    --ds-text-h6: 1rem;
+    --ds-text-btn-primary: 1rem;
+    --ds-text-btn-nav: 1.25rem;
+    --ds-text-btn-footer: 1.875rem;
+
+    --ds-pad-mini: 1rem;
+    --ds-pad-small: 2rem;
+    --ds-pad-med: 3rem;
+    --ds-pad-large: 4rem;
+    --ds-pad-xlarge: 5rem;
+    --ds-pad-container: 1.25rem;
+
+    --ds-gap: 1.25rem;
+    --ds-gap-med: 2rem;
+
+    --ds-radius-sm: 1rem;
+    --ds-radius-med: 3rem;
+    --ds-radius-lg: 6.25rem;
+
+    --ds-grid-col: 25.4375rem;
+    --ds-grid-spacer: 31.51vh;
+    --ds-nav-spacer: 5.375rem;
+  }
+
+  body {
+    font-family: var(--ds-font);
+    background: #1a1c14;
+    color: var(--ds-green-off-white-1);
+    padding: 2rem;
+    line-height: 1.5;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ds-grey-on-track);
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .divider {
+    border: none;
+    border-top: 0.5px solid #2e3028;
+    margin: 2rem 0;
+  }
+
+  /* COLOR SWATCHES */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 0.5px solid rgba(255,255,255,0.06);
+  }
+
+  .swatch-color {
+    height: 64px;
+    width: 100%;
+  }
+
+  .swatch-info {
+    padding: 8px 10px;
+    background: #1f2218;
+  }
+
+  .swatch-name {
+    font-size: 11px;
+    font-weight: 500;
+    color: #dde1d2;
+    display: block;
+  }
+
+  .swatch-hex {
+    font-size: 10px;
+    color: #535450;
+    font-family: monospace;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* TYPOGRAPHY SCALE */
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 0.5px solid #2e3028;
+  }
+
+  .type-meta {
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+
+  .type-token {
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--ds-lime-off);
+  }
+
+  .type-size {
+    font-size: 11px;
+    color: #535450;
+    margin-top: 2px;
+  }
+
+  .type-preview {
+    color: #dde1d2;
+    font-family: var(--ds-font);
+    line-height: 1.1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* SPACING */
+  .spacing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+  }
+
+  .spacing-item {
+    background: #1f2218;
+    border-radius: 8px;
+    padding: 10px;
+    border: 0.5px solid #2e3028;
+  }
+
+  .spacing-bar-wrap {
+    background: #2e3028;
+    border-radius: 4px;
+    height: 6px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .spacing-bar {
+    height: 6px;
+    background: var(--ds-lime);
+    border-radius: 4px;
+  }
+
+  .spacing-token {
+    font-size: 10px;
+    font-family: monospace;
+    color: var(--ds-lime-off);
+    display: block;
+  }
+
+  .spacing-val {
+    font-size: 10px;
+    color: #535450;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* RADIUS */
+  .radius-grid {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .radius-item {
+    text-align: center;
+  }
+
+  .radius-box {
+    background: #2e3028;
+    border: 1.5px solid var(--ds-lime);
+    width: 72px;
+    height: 48px;
+    margin-bottom: 6px;
+  }
+
+  .radius-token {
+    font-size: 10px;
+    font-family: monospace;
+    color: var(--ds-lime-off);
+    display: block;
+  }
+
+  .radius-val {
+    font-size: 10px;
+    color: #535450;
+    display: block;
+    margin-top: 1px;
+  }
+
+  /* BUTTONS */
+  .btn-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .btn-demo {
+    font-family: var(--ds-font);
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s;
+  }
+
+  .btn-demo:hover { opacity: 0.85; }
+
+  .btn-primary {
+    background: var(--ds-lime);
+    color: var(--ds-dark-green);
+    font-size: var(--ds-text-btn-primary);
+    padding: 11px 24px;
+    border-radius: var(--ds-radius-lg);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ds-lime);
+    font-size: var(--ds-text-btn-primary);
+    padding: 10px 22px;
+    border-radius: var(--ds-radius-lg);
+    border: 1.5px solid var(--ds-lime) !important;
+  }
+
+  .btn-nav {
+    background: transparent;
+    color: var(--ds-green-off-white-1);
+    font-size: var(--ds-text-btn-nav);
+    padding: 8px 0;
+    border-bottom: 1.5px solid var(--ds-lime) !important;
+    border-radius: 0;
+  }
+
+  .btn-ghost {
+    background: var(--ds-dark-green-tint-1);
+    color: var(--ds-green-off-white-1);
+    font-size: var(--ds-text-btn-primary);
+    padding: 11px 24px;
+    border-radius: var(--ds-radius-sm);
+  }
+
+  .btn-footer {
+    background: transparent;
+    color: var(--ds-green-off-white-1);
+    font-size: var(--ds-text-btn-footer);
+    padding: 8px 0;
+    border-bottom: 2px solid var(--ds-lime) !important;
+    border-radius: 0;
+  }
+
+  /* SEMANTIC COLORS */
+  .semantic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .semantic-pill {
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--ds-font);
+  }
+
+  /* GRID TOKENS */
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .token-table tr {
+    border-bottom: 0.5px solid #2e3028;
+  }
+
+  .token-table td {
+    padding: 8px 0;
+    color: #dde1d2;
+  }
+
+  .token-table td:first-child {
+    font-family: monospace;
+    color: var(--ds-lime-off);
+    width: 55%;
+  }
+
+  .token-table td:last-child {
+    color: #535450;
+    text-align: right;
+  }
+
+  /* LIVE PREVIEW */
+  .preview-card {
+    background: var(--ds-dark-green);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 0.5px solid #2e3028;
+    margin-top: 0;
+  }
+
+  .preview-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ds-lime);
+    margin-bottom: 0.5rem;
+  }
+
+  .preview-impact {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    color: var(--ds-green-off-white-2);
+    line-height: 0.95;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .preview-body {
+    font-size: 1rem;
+    color: var(--ds-dark-green-tint-2);
+    max-width: 460px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .preview-cta-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  h2.ds-heading {
+    font-size: 16px;
+    font-weight: 500;
+    color: #dde1d2;
+    margin-bottom: 1.25rem;
+  }
+</style>
+
+<div>
+  <div style="margin-bottom:2rem;">
+    <p style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#535450;">Bruno Monteiro — Portfolio</p>
+    <h1 style="font-size:22px;font-weight:500;color:#dde1d2;margin-top:4px;">Design System</h1>
+    <p style="font-size:13px;color:#535450;margin-top:4px;">Tokens extraídos do teu projeto Webflow — vanilla, prontos para CSS</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- COLORS -->
+  <div class="section">
+    <span class="section-label">Paleta de Cores</span>
+    <div class="color-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#282c20;"></div>
+        <div class="swatch-info"><span class="swatch-name">dark-green</span><span class="swatch-hex">#282c20</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#111112;"></div>
+        <div class="swatch-info"><span class="swatch-name">black</span><span class="swatch-hex">#111112</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#d2ff00;border:0.5px solid rgba(255,255,255,0.1)"></div>
+        <div class="swatch-info"><span class="swatch-name">lime <span style="color:#b2c73a">★</span></span><span class="swatch-hex">#d2ff00</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#b2c73a;"></div>
+        <div class="swatch-info"><span class="swatch-name">lime-off</span><span class="swatch-hex">#b2c73a</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#f4f4ed;"></div>
+        <div class="swatch-info"><span class="swatch-name">green-off-white-2</span><span class="swatch-hex">#f4f4ed</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#dde1d2;"></div>
+        <div class="swatch-info"><span class="swatch-name">green-off-white-1</span><span class="swatch-hex">#dde1d2</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#ebeee0;"></div>
+        <div class="swatch-info"><span class="swatch-name">grey-1</span><span class="swatch-hex">#ebeee0</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#b4b8a5;"></div>
+        <div class="swatch-info"><span class="swatch-name">dark-green-tint-2</span><span class="swatch-hex">#b4b8a5</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#535450;"></div>
+        <div class="swatch-info"><span class="swatch-name">grey-on-track</span><span class="swatch-hex">#535450</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#3b3c38;"></div>
+        <div class="swatch-info"><span class="swatch-name">dark-green-tint-1</span><span class="swatch-hex">#3b3c38</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#b9bbad;"></div>
+        <div class="swatch-info"><span class="swatch-name">green-light</span><span class="swatch-hex">#b9bbad</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:rgba(210,255,0,0);border:0.5px dashed #2e3028;"></div>
+        <div class="swatch-info"><span class="swatch-name">lime-zero</span><span class="swatch-hex">#d2ff0000</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TYPOGRAPHY -->
+  <div class="section">
+    <span class="section-label">Escala Tipográfica — Mona Sans Variable</span>
+
+    <div class="type-row">
+      <div class="type-meta"><span class="type-token">--text--impact</span><span class="type-size">7.9375rem / ~127px</span></div>
+      <div class="type-preview" style="font-size:clamp(2rem,8vw,7rem);font-weight:700;letter-spacing:-0.03em;">Bruno.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><span class="type-token">--text--h2</span><span class="type-size">4.5rem / 72px</span></div>
+      <div class="type-preview" style="font-size:clamp(1.5rem,5vw,4rem);font-weight:700;letter-spacing:-0.02em;">Engineering</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><span class="type-token">--text--h1</span><span class="type-size">4rem / 64px</span></div>
+      <div class="type-preview" style="font-size:clamp(1.5rem,4.5vw,3.5rem);font-weight:600;letter-spacing:-0.02em;">Selected Work</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><span class="type-token">--text--h3</span><span class="type-size">2rem / 32px</span></div>
+      <div class="type-preview" style="font-size:clamp(1.2rem,2.5vw,2rem);font-weight:600;">Credit Analysis Platform</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><span class="type-token">--text--h4</span><span class="type-size">1.5rem / 24px</span></div>
+      <div class="type-preview" style="font-size:1.5rem;font-weight:500;">Backend Architecture</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><span class="type-token">--text--h5</span><span class="type-size">1.2rem / 19.2px</span></div>
+      <div class="type-preview" style="font-size:1.2rem;font-weight:500;">Node.js · PostgreSQL · NestJS</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><span class="type-token">--text--h6</span><span class="type-size">1rem / 16px</span></div>
+      <div class="type-preview" style="font-size:1rem;font-weight:400;color:#b4b8a5;">Sicredi Vale do Piquiri — 2024</div>
+    </div>
+    <div class="type-row" style="border-bottom:none;">
+      <div class="type-meta"><span class="type-token">--text--btn-footer</span><span class="type-size">1.875rem / 30px</span></div>
+      <div class="type-preview" style="font-size:1.5rem;font-weight:600;color:#d2ff00;">Let's work together →</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SPACING -->
+  <div class="section">
+    <span class="section-label">Espaçamento (Padding Scale)</span>
+    <div class="spacing-grid">
+      <div class="spacing-item">
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:12.5%"></div></div>
+        <span class="spacing-token">--padding--mini</span><span class="spacing-val">1rem / 16px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:15%"></div></div>
+        <span class="spacing-token">--padding--container</span><span class="spacing-val">1.25rem / 20px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:25%"></div></div>
+        <span class="spacing-token">--padding--small</span><span class="spacing-val">2rem / 32px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:37.5%"></div></div>
+        <span class="spacing-token">--padding--med</span><span class="spacing-val">3rem / 48px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:50%"></div></div>
+        <span class="spacing-token">--padding--large</span><span class="spacing-val">4rem / 64px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:62.5%"></div></div>
+        <span class="spacing-token">--padding--xlarge</span><span class="spacing-val">5rem / 80px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:15%;background:#b2c73a"></div></div>
+        <span class="spacing-token">--gap</span><span class="spacing-val">1.25rem / 20px</span>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:25%;background:#b2c73a"></div></div>
+        <span class="spacing-token">--gap--med</span><span class="spacing-val">2rem / 32px</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BORDER RADIUS -->
+  <div class="section">
+    <span class="section-label">Border Radius</span>
+    <div class="radius-grid">
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:1rem;"></div>
+        <span class="radius-token">--radius--small</span>
+        <span class="radius-val">1rem / 16px</span>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:3rem;"></div>
+        <span class="radius-token">--radius--med</span>
+        <span class="radius-val">3rem / 48px</span>
+      </div>
+      <div class="radius-item">
+        <div class="radius-box" style="border-radius:6.25rem;width:96px;"></div>
+        <span class="radius-token">--radius--large</span>
+        <span class="radius-val">6.25rem / pill</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- BUTTONS -->
+  <div class="section">
+    <span class="section-label">Componentes — Botões</span>
+    <div class="btn-grid">
+      <button class="btn-demo btn-primary">Get in touch</button>
+      <button class="btn-demo btn-secondary">View projects</button>
+      <button class="btn-demo btn-ghost">AgroTrack</button>
+      <button class="btn-demo btn-nav">About</button>
+    </div>
+    <div style="margin-top:16px;">
+      <button class="btn-demo btn-footer">Let's work together →</button>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- GRID LAYOUT TOKENS -->
+  <div class="section">
+    <span class="section-label">Layout & Grid</span>
+    <table class="token-table">
+      <tr><td>--grid-col</td><td>25.4375rem / ~407px</td></tr>
+      <tr><td>--grid-spacer</td><td>31.51vh</td></tr>
+      <tr><td>--on-t-nav-spacer</td><td>5.375rem / 86px</td></tr>
+      <tr><td>--max-vh</td><td>100vh</td></tr>
+      <tr><td>--vh</td><td>1vh (unit base)</td></tr>
+      <tr style="border:none"><td>font-family</td><td>Mona Sans Variable, Arial, sans-serif</td></tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SEMANTIC ROLES -->
+  <div class="section">
+    <span class="section-label">Papéis Semânticos das Cores</span>
+    <div class="semantic-grid">
+      <span class="semantic-pill" style="background:#282c20;color:#d2ff00;border:1px solid #3b3c38;">bg principal</span>
+      <span class="semantic-pill" style="background:#3b3c38;color:#dde1d2;">superfície / card</span>
+      <span class="semantic-pill" style="background:#d2ff00;color:#282c20;">CTA / destaque</span>
+      <span class="semantic-pill" style="background:#b2c73a;color:#282c20;">hover / muted accent</span>
+      <span class="semantic-pill" style="background:#dde1d2;color:#282c20;">texto primário</span>
+      <span class="semantic-pill" style="background:#b4b8a5;color:#282c20;">texto secundário</span>
+      <span class="semantic-pill" style="background:#535450;color:#dde1d2;">texto muted / on-track</span>
+      <span class="semantic-pill" style="background:#111112;color:#535450;border:1px solid #2e3028;">overlay / máx escuro</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- LIVE PREVIEW -->
+  <div class="section">
+    <span class="section-label">Preview — Hero Section</span>
+    <div class="preview-card">
+      <p class="preview-eyebrow">Backend Engineer · Palotina, BR</p>
+      <h1 class="preview-impact">I build systems<br>that actually work.</h1>
+      <p class="preview-body">Distributed systems, financial infrastructure, and internal tooling at Sicredi. Currently architecting a credit analysis platform for cooperative credit.</p>
+      <div class="preview-cta-row">
+        <button class="btn-demo btn-primary">View projects</button>
+        <button class="btn-demo btn-secondary">Get in touch</button>
+      </div>
+    </div>
+  </div>
+</div>

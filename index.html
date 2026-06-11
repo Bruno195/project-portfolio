@@ -1,231 +1,1541 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bruno Monteiro</title>
+  <title>Bruno Monteiro — Software Engineer</title>
+  <meta name="description" content="Bruno Monteiro — Software Engineer at Sicredi. Back-end and full-stack development with Node.js, Python (FastAPI), event-driven architectures, IoT telemetry and applied AI." />
+  <meta name="author" content="Bruno Monteiro" />
+  <meta property="og:title" content="Bruno Monteiro — Software Engineer" />
+  <meta property="og:description" content="Portfolio with Bruno Monteiro's journey, experience, and personal projects." />
+  <meta property="og:type" content="website" />
   <link rel="icon" href="./assets/IMG_0786.JPG" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
+    :root {
+      /* --- COLORS --- */
+      --ds-dark-green:        #282c20;
+      --ds-black:             #111112;
+      --ds-lime:              #d2ff00;
+      --ds-lime-off:          #b2c73a;
+      --ds-lime-zero:         rgba(210, 255, 0, 0);
+      --ds-green-off-white-1: #dde1d2;
+      --ds-green-off-white-2: #f4f4ed;
+      --ds-grey-1:            #ebeee0;
+      --ds-grey-on-track:     #535450;
+      --ds-dark-green-tint-1: #3b3c38;
+      --ds-dark-green-tint-2: #b4b8a5;
+      --ds-green-light:       #b9bbad;
+      /* --- TYPOGRAPHY --- */
+      --ds-font:              'Mona Sans', Arial, sans-serif;
+      --ds-font-mono:         'JetBrains Mono', 'Courier New', Courier, monospace;
+      --ds-text-impact:       7.9375rem;
+      --ds-text-h1:           4rem;
+      --ds-text-h2:           4.5rem;
+      --ds-text-h3:           2rem;
+      --ds-text-h4:           1.5rem;
+      --ds-text-h5:           1.2rem;
+      --ds-text-h6:           1rem;
+      --ds-text-btn-primary:  1rem;
+      --ds-text-btn-nav:      1.25rem;
+      --ds-text-btn-footer:   1.875rem;
+      /* --- SPACING --- */
+      --ds-pad-mini:          1rem;
+      --ds-pad-container:     1.25rem;
+      --ds-pad-small:         2rem;
+      --ds-pad-med:           3rem;
+      --ds-pad-large:         4rem;
+      --ds-pad-xlarge:        5rem;
+      --ds-gap:               1.25rem;
+      --ds-gap-med:           2rem;
+      /* --- BORDER RADIUS --- */
+      --ds-radius-sm:         1rem;
+      --ds-radius-med:        3rem;
+      --ds-radius-lg:         6.25rem;
+      /* --- LAYOUT --- */
+      --ds-grid-col:          25.4375rem;
+      --ds-grid-spacer:       31.51vh;
+      --ds-nav-spacer:        5.375rem;
+      --ds-max-vh:            100vh;
+      --ds-vh:                1vh;
+    }
+
+    /* ===================== RESET ===================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--ds-dark-green);
+    }
+
+    body {
+      font-family: var(--ds-font);
+      background-color: transparent;
+      color: var(--ds-green-off-white-1);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img, video {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    ::selection {
+      background: var(--ds-lime);
+      color: var(--ds-dark-green);
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--ds-dark-green); }
+    ::-webkit-scrollbar-thumb { background: var(--ds-dark-green-tint-1); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--ds-lime-off); }
+
+    /* ===================== TYPOGRAPHY ===================== */
+    h1 {
+      font-size: var(--ds-text-h1);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--ds-green-off-white-2);
+    }
+
+    h2 {
+      font-size: var(--ds-text-h2);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--ds-green-off-white-2);
+    }
+
+    h3 {
+      font-size: var(--ds-text-h3);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--ds-green-off-white-1);
+    }
+
+    p {
+      font-size: var(--ds-text-h6);
+      color: var(--ds-dark-green-tint-2);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--ds-lime);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover { color: var(--ds-lime-off); }
+
+    .eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ds-lime);
+    }
+
+    .text-muted {
+      font-size: 0.75rem;
+      color: var(--ds-grey-on-track);
+    }
+
+    /* ===================== BUTTONS ===================== */
+    .btn {
+      font-family: var(--ds-font);
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+      transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--ds-lime);
+      color: var(--ds-dark-green);
+      font-size: var(--ds-text-btn-primary);
+      padding: 11px 24px;
+      border-radius: var(--ds-radius-lg);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+      color: var(--ds-dark-green);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ds-lime);
+      font-size: var(--ds-text-btn-primary);
+      padding: 10px 22px;
+      border-radius: var(--ds-radius-lg);
+      border: 1.5px solid var(--ds-lime);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(210, 255, 0, 0.06);
+      color: var(--ds-lime);
+    }
+
+    .btn:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--ds-lime);
+      outline-offset: 3px;
+    }
+
+    /* ===================== LAYOUT ===================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--ds-pad-med);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: var(--ds-gap);
+      margin-bottom: var(--ds-pad-med);
+    }
+
+    .section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(180, 200, 154, 0.08);
+    }
+
+    hr, .divider {
+      border: none;
+      border-top: 1px solid rgba(180, 200, 154, 0.08);
+    }
+
+    /* ===================== NAV ===================== */
+    nav {
+      background-color: var(--ds-dark-green);
+      border-bottom: 1px solid rgba(180, 200, 154, 0.08);
+      height: var(--ds-nav-spacer);
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 var(--ds-pad-med);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      font-family: var(--ds-font);
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--ds-lime);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .nav-logo:hover {
+      color: var(--ds-lime);
+      opacity: 0.8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--ds-pad-small);
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ds-dark-green-tint-2);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ds-lime);
+    }
+
+    .nav-cta {
+      background: var(--ds-lime) !important;
+      color: var(--ds-dark-green) !important;
+      font-size: 0.8125rem !important;
+      font-weight: 600 !important;
+      padding: 7px 18px;
+      border-radius: var(--ds-radius-lg);
+      transition: opacity 0.15s ease !important;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+      color: var(--ds-dark-green) !important;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--ds-green-off-white-1);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      border-radius: 1px;
+    }
+
+    .nav-toggle.is-open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+    .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.is-open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      background-color: var(--ds-dark-green);
+      min-height: var(--ds-max-vh);
+      padding-top: var(--ds-nav-spacer);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: var(--ds-pad-large);
+      align-items: center;
+      width: 100%;
+      padding: var(--ds-pad-xlarge) 0;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ds-lime);
+      margin-bottom: var(--ds-pad-mini);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--ds-lime);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
+    .hero-heading {
+      font-size: var(--ds-text-impact);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: var(--ds-green-off-white-2);
+      margin-bottom: var(--ds-pad-small);
+    }
+
+    .hero-body {
+      font-size: var(--ds-text-h5);
+      color: var(--ds-dark-green-tint-2);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: var(--ds-pad-med);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--ds-gap);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Terminal */
+    .terminal {
+      background: var(--ds-black);
+      border: 1px solid rgba(180, 200, 154, 0.12);
+      border-radius: var(--ds-radius-sm);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      background: var(--ds-dark-green-tint-1);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid rgba(180, 200, 154, 0.08);
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(180, 200, 154, 0.18);
+    }
+
+    .terminal-filename {
+      font-family: var(--ds-font-mono);
+      font-size: 0.6875rem;
+      color: var(--ds-grey-on-track);
+      margin-left: 6px;
+    }
+
+    .terminal-body {
+      padding: var(--ds-pad-mini) var(--ds-pad-small) var(--ds-pad-small);
+      font-family: var(--ds-font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.95;
+    }
+
+    .tl { display: flex; gap: 8px; }
+    .tp { color: var(--ds-lime); user-select: none; }
+    .tc { color: var(--ds-green-off-white-1); }
+    .tk { color: var(--ds-dark-green-tint-2); }
+    .tv { color: var(--ds-lime-off); }
+    .tm { color: var(--ds-grey-on-track); }
+    .ti { padding-left: 16px; }
+    .ti2 { padding-left: 32px; }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--ds-lime);
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink 1.1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Stats */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--ds-gap);
+      margin-top: var(--ds-gap);
+    }
+
+    .stat {
+      padding: var(--ds-pad-mini);
+      border: 1px solid rgba(180, 200, 154, 0.08);
+      border-radius: var(--ds-radius-sm);
+      background: rgba(59, 60, 56, 0.4);
+    }
+
+    .stat-value {
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--ds-green-off-white-2);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ds-grey-on-track);
+      margin-top: 5px;
+    }
+
+    .hero-photo-card {
+      background: var(--ds-black);
+      border: 1px solid rgba(180, 200, 154, 0.12);
+      border-radius: var(--ds-radius-sm);
+      overflow: hidden;
+      padding: 14px;
+      display: flex;
+    }
+
+    .hero-photo-card .ds-img-frame {
+      width: 100%;
+      display: flex;
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: calc(var(--ds-radius-sm) - 6px);
+      filter: saturate(0.95) contrast(1.04);
+    }
+
+    /* Side-by-side: photo | terminal, stats spanning below */
+    .hero-right {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: var(--ds-gap);
+      align-items: stretch;
+    }
+
+    .hero-right .hero-photo {
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 380px;
+    }
+
+    .hero-right .ds-terminal {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .hero-right .ds-terminal__body {
+      flex: 1;
+      font-size: 0.75rem;
+    }
+
+    .hero-right .ds-terminal__output {
+      overflow-x: hidden;
+    }
+
+    .hero-right .hero-stats {
+      grid-column: 1 / -1;
+    }
+
+    /* ===================== CONTENT SECTIONS ===================== */
+    #resume,
+    #experience,
+    #projects {
+      padding: var(--ds-pad-xlarge) 0;
+      border-top: 1px solid rgba(180, 200, 154, 0.08);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--ds-gap-med);
+    }
+
+    .work-card {
+      background: var(--ds-dark-green-tint-1);
+      border: 1px solid rgba(180, 200, 154, 0.08);
+      border-radius: var(--ds-radius-sm);
+      padding: var(--ds-pad-small);
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-gap);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .work-card:hover {
+      border-color: rgba(180, 200, 154, 0.16);
+      background: rgba(59, 60, 56, 0.8);
+    }
+
+    .work-card-featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--ds-pad-small);
+    }
+
+    .work-card-featured .wc-main {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-gap);
+    }
+
+    .work-card-featured .wc-visual {
+      background: var(--ds-dark-green);
+      border: 1px solid rgba(180, 200, 154, 0.08);
+      border-radius: calc(var(--ds-radius-sm) - 4px);
+      padding: var(--ds-pad-small);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .wc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--ds-gap);
+    }
+
+    .wc-meta { /* eyebrow */
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ds-lime);
+    }
+
+    .wc-year {
+      font-family: var(--ds-font-mono);
+      font-size: 0.75rem;
+      color: var(--ds-grey-on-track);
+      flex-shrink: 0;
+    }
+
+    .wc-title {
+      font-size: var(--ds-text-h3);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ds-green-off-white-1);
+      line-height: 1.15;
+    }
+
+    .wc-desc {
+      font-size: var(--ds-text-h6);
+      color: var(--ds-dark-green-tint-2);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .wc-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: var(--ds-font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ds-dark-green-tint-2);
+      background: var(--ds-dark-green-tint-1);
+      border: 1px solid rgba(180, 200, 154, 0.12);
+      padding: 4px 12px;
+      border-radius: var(--ds-radius-sm);
+      display: inline-block;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .work-card.work-card-featured .tag {
+      background: var(--ds-dark-green-tint-1);
+    }
+
+    .wc-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--ds-gap);
+      border-top: 1px solid rgba(180, 200, 154, 0.08);
+      margin-top: auto;
+    }
+
+    .wc-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ds-lime);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: gap 0.15s ease, color 0.15s ease;
+    }
+
+    .wc-link:hover {
+      color: var(--ds-lime-off);
+      gap: 10px;
+    }
+
+    .project-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .project-visual {
+      min-height: 230px;
+      background: var(--ds-black);
+      border-bottom: 1px solid rgba(180, 200, 154, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--ds-pad-small);
+    }
+
+    .project-visual img {
+      width: min(220px, 80%);
+      height: 160px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .project-card .wc-main {
+      padding: var(--ds-pad-small);
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-gap);
+      flex: 1;
+    }
+
+    /* ===================== TERMINAL COMPONENT ===================== */
+    .ds-terminal {
+      background: var(--ds-black);
+      border: 1px solid rgba(180, 200, 154, 0.14);
+      border-radius: var(--ds-radius-sm);
+      font-family: var(--ds-font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.7;
+      overflow: hidden;
+      width: 100%;
+      box-shadow:
+        0 0 0 1px rgba(210, 255, 0, 0.04),
+        0 24px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    .ds-terminal__bar {
+      background: var(--ds-dark-green-tint-1);
+      border-bottom: 1px solid rgba(180, 200, 154, 0.10);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ds-terminal__dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .ds-terminal__dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .ds-terminal__dot--red { background: var(--ds-grey-on-track); }
+    .ds-terminal__dot--yellow { background: var(--ds-lime-off); }
+    .ds-terminal__dot--green { background: var(--ds-lime); }
+
+    .ds-terminal__title {
+      font-size: 0.6875rem;
+      color: var(--ds-grey-on-track);
+      letter-spacing: 0.04em;
+      flex: 1;
+      text-align: center;
+    }
+
+    .ds-terminal__body {
+      padding: 20px 24px;
+      min-height: 280px;
+    }
+
+    .ds-terminal__line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 2px;
+    }
+
+    .ds-terminal__prompt {
+      color: var(--ds-lime);
+      user-select: none;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ds-terminal__cmd-text {
+      color: var(--ds-green-off-white-2);
+    }
+
+    .ds-terminal__output {
+      margin: 10px 0 10px 20px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .ds-json-brace { color: var(--ds-green-off-white-1); }
+    .ds-json-key { color: var(--ds-lime-off); }
+    .ds-json-string { color: var(--ds-green-off-white-2); }
+    .ds-json-number,
+    .ds-json-boolean { color: var(--ds-lime); }
+    .ds-json-null,
+    .ds-json-comma { color: var(--ds-grey-on-track); }
+    .ds-json-colon,
+    .ds-json-bracket { color: var(--ds-dark-green-tint-2); }
+
+    .ds-terminal__cursor {
+      color: var(--ds-lime);
+      animation: ds-blink 1s step-end infinite;
+      font-size: 0.875rem;
+    }
+
+    @keyframes ds-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Arch diagram inside featured card */
+    .arch-row {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+    }
+
+    .arch-node {
+      background: var(--ds-dark-green-tint-1);
+      border: 1px solid rgba(180, 200, 154, 0.12);
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-family: var(--ds-font-mono);
+      font-size: 0.75rem;
+      color: var(--ds-dark-green-tint-2);
+    }
+
+    .arch-node.is-accent {
+      border-color: rgba(210, 255, 0, 0.25);
+      color: var(--ds-lime);
+    }
+
+    .arch-arrow {
+      font-family: var(--ds-font-mono);
+      font-size: 0.6875rem;
+      color: var(--ds-grey-on-track);
+      text-align: center;
+      line-height: 1;
+    }
+
+    /* ===================== ABOUT ===================== */
+    #about {
+      padding: var(--ds-pad-xlarge) 0;
+      border-top: 1px solid rgba(180, 200, 154, 0.08);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--ds-pad-xlarge);
+      align-items: start;
+    }
+
+    .about-body p {
+      font-size: 1.0625rem;
+      color: var(--ds-dark-green-tint-2);
+      line-height: 1.8;
+    }
+
+    .about-body p + p {
+      margin-top: var(--ds-gap-med);
+    }
+
+    .about-body strong {
+      color: var(--ds-green-off-white-1);
+      font-weight: 500;
+    }
+
+    .stack-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-pad-small);
+    }
+
+    .stack-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-gap);
+    }
+
+    .stack-group-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ds-grey-on-track);
+    }
+
+    .stack-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ===================== CONTACT ===================== */
+    #contact {
+      padding: var(--ds-pad-xlarge) 0;
+      border-top: 1px solid rgba(180, 200, 154, 0.08);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--ds-pad-xlarge);
+      align-items: center;
+    }
+
+    .contact-heading {
+      font-size: var(--ds-text-h1);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--ds-green-off-white-2);
+      margin-bottom: var(--ds-pad-small);
+    }
+
+    .contact-sub {
+      font-size: 1.0625rem;
+      color: var(--ds-dark-green-tint-2);
+      line-height: 1.7;
+      margin-bottom: var(--ds-pad-med);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--ds-gap);
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--ds-pad-mini) var(--ds-pad-small);
+      border: 1px solid rgba(180, 200, 154, 0.08);
+      border-radius: var(--ds-radius-sm);
+      text-decoration: none;
+      transition: border-color 0.15s ease, background 0.15s ease;
+      background: transparent;
+    }
+
+    .contact-link:hover {
+      border-color: rgba(180, 200, 154, 0.2);
+      background: rgba(210, 255, 0, 0.04);
+    }
+
+    .contact-link-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ds-grey-on-track);
+      margin-bottom: 3px;
+    }
+
+    .contact-link-value {
+      font-size: var(--ds-text-h6);
+      color: var(--ds-green-off-white-1);
+      font-weight: 500;
+    }
+
+    .contact-link-arrow {
+      color: var(--ds-lime);
+      font-size: 1.125rem;
+      flex-shrink: 0;
+    }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background-color: var(--ds-dark-green);
+      border-top: 1px solid rgba(180, 200, 154, 0.08);
+      padding: var(--ds-pad-large) 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      font-family: var(--ds-font);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ds-lime);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: var(--ds-pad-small);
+    }
+
+    .footer-nav a {
+      color: var(--ds-dark-green-tint-2);
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-nav a:hover {
+      color: var(--ds-lime);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--ds-grey-on-track);
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      :root {
+        --ds-text-impact: 5.5rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--ds-pad-large);
+      }
+
+      .hero-right {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right .hero-photo {
+        aspect-ratio: 4 / 5;
+        height: auto;
+        min-height: 0;
+      }
+
+      .work-card-featured {
+        grid-template-columns: 1fr;
+      }
+
+      .work-card-featured .wc-visual {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --ds-text-impact: 3.75rem;
+        --ds-text-h1:     2.5rem;
+        --ds-text-h2:     3rem;
+        --ds-text-h3:     1.5rem;
+        --ds-pad-med:     2rem;
+        --ds-pad-large:   3rem;
+        --ds-pad-xlarge:  3.5rem;
+      }
+
+      nav { padding: 0 var(--ds-pad-mini); }
+      .container { padding: 0 var(--ds-pad-mini); }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: var(--ds-nav-spacer);
+        left: 0;
+        right: 0;
+        background: var(--ds-dark-green);
+        border-bottom: 1px solid rgba(180, 200, 154, 0.08);
+        flex-direction: column;
+        padding: var(--ds-pad-small);
+        gap: var(--ds-pad-mini);
+        align-items: flex-start;
+      }
+
+      .nav-links.is-open { display: flex; }
+      .nav-toggle { display: flex; }
+
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card-featured { grid-column: 1; }
+
+      .about-grid { grid-template-columns: 1fr; gap: var(--ds-pad-large); }
+      .contact-grid { grid-template-columns: 1fr; gap: var(--ds-pad-large); }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: var(--ds-gap-med);
+        text-align: center;
+      }
+
+      .hero-cta { flex-direction: column; align-items: flex-start; }
+
+      .ds-terminal {
+        max-width: 100%;
+        font-size: 0.75rem;
+      }
+
+      .ds-terminal__body {
+        padding: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ds-terminal__cursor {
+        animation: none;
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
-
 <body>
-  <header class="header">
-    <a href="#home" class="logo"> Bruno <span>Monteiro</span> </a>
-    <i class="bx bx-menu" id="menu" class="active"></i>
-    <nav class="navbar">
-      <a href="#home" class="active">Home</a>
-      <a href="#resume">My Journey</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <!-- <a href="#contact">Contact</a> -->
-    </nav>
-  </header>
-  <section class="home" id="home">
-    <div class="home-content">
-      <h1>Hi, It's <span>Bruno</span></h1>
-      <h3 class="text-animation">I'm a
-        <span></span>
-      </h3>
-      <p>
-        I'm passionate about learning new technologies and applying them to solve real-world problems. I am also committed to delivering high-quality and user-friendly solutions that meet the needs and expectations of customers and stakeholders
-      </p>
-      <div class="social-icons">
-        <a href="https://www.linkedin.com/in/bruno-monteiro-52b250117/" target="_blank"><i class="bx bxl-linkedin"></i></a>
-      <a href="https://github.com/Bruno195" target="_blank"><i class="bx bxl-github"></i></a>
-      </div>
-      <div class="btn-group">
-        <a href="https://drive.google.com/file/d/1L20WvdKSHuZSFTJ8ZvbCDblOIRTJx6zV/view?usp=sharing" target="_blank"
-          class="btn">Download Resume</a>
-        <!-- <a href="#contact" class="btn">Contact</a> -->
-      </div>
-    </div>
-    <div class="home-img">
-      <img src="./assets/IMG_0786.JPG" alt="profile" />
-    </div>
-    </div>
-  </section>
 
-  <section class="education" id="resume">
-    <h1 class="heading">My Journey</h1>
-    <div class="timeline-items">
-      <div class="timeline-item">
-        <div class="timeline-dot"> </div>
-        <div class="timeline-date">2018</div>
-        <div class="timeline-content">
-          <h3>Certifications CPA-10 e CPA-20</h3>
-          <p>I obtained two certifications to demonstrate my knowledge of the financial market.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"> </div>
-        <div class="timeline-date">2021</div>
-        <div class="timeline-content">
-          <h3>Analyst Support Role</h3>
-          <p>Worked as an Analyst Support providing technical assistance and troubleshooting to users.</p>
-       
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"> </div>
-        <div class="timeline-date">2022</div>
-        <div class="timeline-content">
-          <h3>Graduation in Systems Analysis and Development</h3>
-          <p>Completed degree in Systems Analysis and Development.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"> </div>
-        <div class="timeline-date">2022-2024</div>
-        <div class="timeline-content">
-          <h3>Developer</h3>
-          <p>Serving as a Full-stack Developer. Responsible for developing websites and handling both front-end and back-end tasks.</p>
-        </div>
-      </div>
-    </div>
-
-
-  </section>
-
-  <section class="services" id="experience">
-    <h2 class="heading">
-      Experience
-    </h2>
-    <div class="services-container">
-      <div class="service-box">
-        <div class="service-info">
-          <h4>Front-End</h4>
-          <p>I work with front-end development, utilizing modern technologies such as React, HTML, CSS, and Next.js.</p>
-
-        </div>
-      </div>
-      <div class="service-box">
-        <div class="service-info">
-          <h4>Back-End</h4>
-          <p>I also extends to back-end development, where I work with technologies like Python, Node.js, Nest.js, Express.js, MongoDB, Prisma, and Nest.js. From building robust APIs to implementing database solutions.</p>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="projects" id="projects">
-
-    <div class="projects-box">
-      <h2 class="heading">
-        Personal Projects</h2>
-      <div class="wrapper">
-               
-         <a href="https://won-games-app.netlify.app" target="_blank">
-          <div class="project-item">
-
-            <img src="./assets/./joystick.svg" alt="IMG">
-
-          </div>
-        </a>
-
-         <a href="https://netspace-landing-page.netlify.app" target="_blank">
-          <div class="project-item">
-
-            <img src="./assets/./logo.svg" alt="IMG">
-
-          </div>
-        </a>
-
-         <a href="https://wiki-data-project.netlify.app/#/" target="_blank">
-          <div class="project-item">
-
-            <img src="./assets/./wiki_logo_with_bg.b69f7078.png" alt="IMG">
-
-          </div>
-        </a>
-
-         <a href="https://github.com/Bruno195/desafio-teddy-short-url" target="_blank">
-          <div class="project-item">
-
-            <img src="./assets/./channels4_profile.jpg" alt="IMG">
-
-          </div>
-        </a>
-
-        <a href="https://nostalgic-turing-e2729c.netlify.app/" target="_blank">
-          <div class="project-item">
-
-            <img src="./assets/./tradeStock.png" alt="IMG">
-
-          </div>
-        </a>
-
-
-        <a href="https://630480c2b03eaf000c8a054b--fantastic-starship-3af090.netlify.app/" target="_blank">
-          <div class="project-item">
-            <img src="./assets/contador.png" alt="IMG">
-
-          </div>
-        </a>
-
-
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-  <!-- <section class="contact" id="contact">
-    <h2 class="heading">Contact <span>Me</span></h2>
-    <form action="">
-      <div class="input-group">
-        <div class="input-box">
-          <input type="text" placeholder="Full Name">
-          <input type="email" placeholder="Email">
-
-        </div>
-        <div class="input-box">
-          <input type="number" placeholder="Phone Number">
-          <input type="text" placeholder="Subject">
-
-        </div>
-
-
-      </div>
-      <div class="input-group-2">
-        <textarea name="" id="" cols="30" rows="10" placeholder="Your message"></textarea>
-        <input type="submit" value="Send Message" class="btn">
-      </div>
-    </form>
-  </section> -->
-
-  <footer class="footer">
-    <div class="social">
-      <a href="https://www.linkedin.com/in/bruno-monteiro-52b250117/" target="_blank"><i class="bx bxl-linkedin"></i></a>
-      <a href="https://github.com/Bruno195" target="_blank"><i class="bx bxl-github"></i></a>
-    </div>
-    <ul class="list">
-      <li>
+  <!-- ===================== NAV ===================== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">BM</a>
+      <div class="nav-links" id="nav-links">
         <a href="#resume">My Journey</a>
-      </li>
-      <li>
         <a href="#experience">Experience</a>
-      </li>
-      <li>
-        <a href="#projects">My Projects</a>
-      </li>
-      <!-- <li>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
-      </li> -->
-    </ul>
-    <p class="copyright">
-      © Bruno Monteiro | All Rights Reserved
-    </p>
+        <a href="https://linkedin.com/in/bruno-monteiro-52b250117/" class="nav-cta" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left -->
+        <div>
+          <p class="hero-eyebrow">
+            <span class="hero-eyebrow-dot"></span>
+            Software Engineer @ Sicredi
+          </p>
+          <h1 class="hero-heading">Hi, It's<br>Bruno.</h1>
+          <p class="hero-body">
+            Software engineer working on real-world systems, integrations and event-driven architectures — from IoT telemetry with RabbitMQ and MQTT to applied AI with LLMs, built on Node.js, Python and AWS.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View projects</a>
+            <a href="https://drive.google.com/file/d/1L20WvdKSHuZSFTJ8ZvbCDblOIRTJx6zV/view?usp=sharing" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Download Resume</a>
+          </div>
+        </div>
+
+        <!-- Right: profile image + stats -->
+        <div class="hero-right">
+          <div class="hero-photo-card">
+            <img src="./assets/image_new.png" alt="Bruno Monteiro" class="hero-photo" />
+          </div>
+
+          <div class="ds-terminal" id="hero-terminal" aria-label="Developer profile terminal" role="img">
+            <div class="ds-terminal__bar">
+              <div class="ds-terminal__dots">
+                <span class="ds-terminal__dot ds-terminal__dot--red"></span>
+                <span class="ds-terminal__dot ds-terminal__dot--yellow"></span>
+                <span class="ds-terminal__dot ds-terminal__dot--green"></span>
+              </div>
+              <span class="ds-terminal__title">bruno@portfolio ~ profile.json</span>
+            </div>
+
+            <div class="ds-terminal__body">
+              <div class="ds-terminal__line ds-terminal__line--cmd">
+                <span class="ds-terminal__prompt">&gt;</span>
+                <span class="ds-terminal__cmd-text">cat profile.json</span>
+              </div>
+              <div class="ds-terminal__output" id="terminal-output"></div>
+              <div class="ds-terminal__line ds-terminal__line--cursor">
+                <span class="ds-terminal__prompt">&gt;</span>
+                <span class="ds-terminal__cursor" aria-hidden="true">&#9608;</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-value">4+</div>
+              <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">15+</div>
+              <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">2026</div>
+              <div class="stat-label">MBA @ USP</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== JOURNEY ===================== -->
+  <section id="resume">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">My Journey</span>
+      </div>
+
+      <div class="work-grid">
+
+        <div class="work-card work-card-featured">
+          <div class="wc-main">
+            <div class="wc-header">
+              <span class="wc-meta">Current Role</span>
+              <span class="wc-year">2025 - Present</span>
+            </div>
+            <h3 class="wc-title">Software Engineer<br>@ Sicredi</h3>
+            <p class="wc-desc">
+              Software Engineer at Sicredi Vale do Piquiri Abcd PR/SP, building software for one of the largest cooperative financial institutions in Brazil.
+            </p>
+            <div class="wc-stack">
+              <span class="tag">Node.js</span>
+              <span class="tag">Event-Driven</span>
+              <span class="tag">AWS</span>
+              <span class="tag">CI/CD</span>
+            </div>
+          </div>
+
+          <div class="wc-visual">
+            <span class="text-muted" style="font-family:var(--ds-font-mono);margin-bottom:6px;">journey.log</span>
+            <div class="arch-row">
+              <div class="arch-node">2021 &nbsp; IT Support Analyst · Sovis</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-node">2022-2024 &nbsp; Eu Médico Residente</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-node">2024 &nbsp; EEmovel · AI &amp; Integrations</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-node">2025 &nbsp; Wikidados · IoT Telemetry</div>
+              <div class="arch-arrow">↓</div>
+              <div class="arch-node is-accent">2025 &nbsp; Software Engineer @ Sicredi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="wc-header">
+            <span class="wc-meta">Education</span>
+            <span class="wc-year">2026 - 2027</span>
+          </div>
+          <h3 class="wc-title">MBA Software<br>Engineering — USP</h3>
+          <p class="wc-desc">
+            Master of Business Administration in Software Engineering at Universidade de São Paulo.
+          </p>
+          <div class="wc-stack">
+            <span class="tag">USP</span>
+            <span class="tag">Software Engineering</span>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="wc-header">
+            <span class="wc-meta">Education</span>
+            <span class="wc-year">2020 - 2022</span>
+          </div>
+          <h3 class="wc-title">Systems Analysis<br>and Development</h3>
+          <p class="wc-desc">
+            Degree in Systems Analysis and Development at Unipar — Universidade Paranaense.
+          </p>
+          <div class="wc-stack">
+            <span class="tag">Unipar</span>
+            <span class="tag">Systems</span>
+            <span class="tag">Development</span>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="wc-header">
+            <span class="wc-meta">Certifications</span>
+            <span class="wc-year">Ongoing</span>
+          </div>
+          <h3 class="wc-title">Linux, Git<br>&amp; Cooptech</h3>
+          <p class="wc-desc">
+            Linux course, Git &amp; GitHub course and Cooptech 2026 — continuous learning alongside hands-on work.
+          </p>
+          <div class="wc-stack">
+            <span class="tag">Linux</span>
+            <span class="tag">Git / GitHub</span>
+            <span class="tag">Cooptech 2026</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">Experience</span>
+      </div>
+
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="wc-header">
+            <span class="wc-meta">Sicredi Vale do Piquiri</span>
+            <span class="wc-year">2025 - Present</span>
+          </div>
+          <h3 class="wc-title">Software<br>Engineer</h3>
+          <p class="wc-desc">
+            Building software for cooperative banking — real-world systems with a focus on stability, scalability and reliable delivery.
+          </p>
+          <div class="wc-stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">Event-Driven</span>
+            <span class="tag">AWS</span>
+            <span class="tag">Jenkins</span>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="wc-header">
+            <span class="wc-meta">Wikidados</span>
+            <span class="wc-year">2025</span>
+          </div>
+          <h3 class="wc-title">IoT &amp;<br>Telemetry</h3>
+          <p class="wc-desc">
+            Telemetry systems for 3G-connected IoT devices: event ingestion, async processing with RabbitMQ, MongoDB persistence, Vue.js interfaces and Jenkins CI/CD pipelines.
+          </p>
+          <div class="wc-stack">
+            <span class="tag">Node.js</span>
+            <span class="tag">RabbitMQ</span>
+            <span class="tag">MQTT</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Vue.js</span>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="wc-header">
+            <span class="wc-meta">EEmovel</span>
+            <span class="wc-year">2024</span>
+          </div>
+          <h3 class="wc-title">AI &amp;<br>Integrations</h3>
+          <p class="wc-desc">
+            APIs with Python and FastAPI, LLM integrations (ChatGPT) for document analysis and summarization, WhatsApp automation, CRM sync, and AWS infrastructure with EC2, SQS, SNS, S3 and Textract.
+          </p>
+          <div class="wc-stack">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">LLMs</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">AWS</span>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="wc-header">
+            <span class="wc-meta">Eu Médico Residente</span>
+            <span class="wc-year">2022 - 2024</span>
+          </div>
+          <h3 class="wc-title">Full-Stack<br>Platform</h3>
+          <p class="wc-desc">
+            Web interfaces with React and Next.js, APIs with NestJS, maintenance of PHP / Ruby / Node.js systems, Strapi CMS and external integrations including Discord automation.
+          </p>
+          <div class="wc-stack">
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">NestJS</span>
+            <span class="tag">Ruby</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Strapi</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow">Personal Projects</span>
+      </div>
+
+      <div class="work-grid">
+        <a href="https://won-games-app.netlify.app" class="work-card project-card" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual">
+            <img src="./assets/joystick.svg" alt="Won Games project" />
+          </div>
+          <div class="wc-main">
+            <div class="wc-header">
+              <span class="wc-meta">Project</span>
+              <span class="wc-year">Live</span>
+            </div>
+            <h3 class="wc-title">Won Games</h3>
+            <p class="wc-desc">A personal games storefront project.</p>
+            <div class="wc-footer"><span class="wc-link">Open project <span>→</span></span></div>
+          </div>
+        </a>
+
+        <a href="https://netspace-landing-page.netlify.app" class="work-card project-card" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual">
+            <img src="./assets/logo.svg" alt="Netspace landing page project" />
+          </div>
+          <div class="wc-main">
+            <div class="wc-header">
+              <span class="wc-meta">Project</span>
+              <span class="wc-year">Live</span>
+            </div>
+            <h3 class="wc-title">Netspace</h3>
+            <p class="wc-desc">Landing page project with a polished visual interface.</p>
+            <div class="wc-footer"><span class="wc-link">Open project <span>→</span></span></div>
+          </div>
+        </a>
+
+        <a href="https://wiki-data-project.netlify.app/#/" class="work-card project-card" target="_blank" rel="noopener noreferrer">
+          <div class="project-visual">
+            <img src="./assets/wiki_logo_with_bg.b69f7078.png" alt="Wiki Data project" />
+          </div>
+          <div class="wc-main">
+            <div class="wc-header">
+              <span class="wc-meta">Project</span>
+              <span class="wc-year">Live</span>
+            </div>
+            <h3 class="wc-title">Wiki Data</h3>
+            <p class="wc-desc">Application project using public wiki-style data.</p>
+            <div class="wc-footer"><span class="wc-link">Open project <span>→</span></span></div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div>
+          <h2 class="contact-heading">Let's work<br>together.</h2>
+          <p class="contact-sub">
+            Interested in environments where technology solves real problems — back-end, event-driven systems, integrations and applied AI, with focus on quality, scalability and practical impact.
+          </p>
+          <a href="https://linkedin.com/in/bruno-monteiro-52b250117/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            Reach out ↗
+          </a>
+        </div>
+
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/bruno-monteiro-52b250117/" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-value">bruno-monteiro-52b250117</div>
+            </div>
+            <span class="contact-link-arrow">↗</span>
+          </a>
+          <a href="https://github.com/Bruno195" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-value">Bruno195</div>
+            </div>
+            <span class="contact-link-arrow">↗</span>
+          </a>
+          <a href="https://drive.google.com/file/d/1L20WvdKSHuZSFTJ8ZvbCDblOIRTJx6zV/view?usp=sharing" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <div>
+              <div class="contact-link-label">Resume</div>
+              <div class="contact-link-value">Download PDF</div>
+            </div>
+            <span class="contact-link-arrow">↓</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-brand">BM</span>
+        <div class="footer-nav" aria-label="Footer navigation">
+          <a href="#resume">My Journey</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <span class="footer-copy">© 2026 Bruno Monteiro</span>
+      </div>
+    </div>
   </footer>
 
-  <script src="./script.js"></script>
-</body>
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
 
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      toggle.classList.toggle('is-open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('is-open');
+        toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Active nav on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(a => a.classList.remove('active'));
+          const match = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (match) match.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => io.observe(s));
+  </script>
+  <script src="javascript/scroll-reveal.js"></script>
+  <script src="javascript/image-hover.js"></script>
+  <script src="javascript/cursor.js"></script>
+  <script src="javascript/parallax.js"></script>
+  <script src="javascript/section-animations.js"></script>
+  <script src="javascript/nav-spy.js"></script>
+  <script src="javascript/terminal.js"></script>
+  <script src="javascript/grid-overlay.js"></script>
+  <script src="javascript/image-fx.js"></script>
+
+</body>
 </html>
