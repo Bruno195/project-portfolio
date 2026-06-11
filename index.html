@@ -11,7 +11,11 @@
   <meta property="og:type" content="website" />
   <link rel="icon" href="./assets/IMG_0786.JPG" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 
@@ -228,6 +232,51 @@
       background: rgba(180, 200, 154, 0.08);
     }
 
+    .section-heading .eyebrow::before {
+      content: '■';
+      color: var(--ds-lime);
+      font-size: 0.6em;
+      margin-right: 10px;
+      vertical-align: 1px;
+    }
+
+    /* ===================== MARQUEE ===================== */
+    .marquee {
+      width: 100%;
+      height: 48px;
+      overflow: hidden;
+      background: var(--ds-black);
+      border-top: 1px solid rgba(180, 200, 154, 0.08);
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee__track {
+      display: flex;
+      flex-shrink: 0;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+    }
+
+    .marquee__content {
+      font-family: var(--ds-font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ds-lime);
+      padding-right: 1ch;
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee__track { animation: none; }
+    }
+
     hr, .divider {
       border: none;
       border-top: 1px solid rgba(180, 200, 154, 0.08);
@@ -348,6 +397,11 @@
       padding: var(--ds-pad-xlarge) 0;
     }
 
+    .hero-shell {
+      width: 100%;
+      padding: var(--ds-pad-xlarge) 0;
+    }
+
     .hero-eyebrow {
       font-size: 0.6875rem;
       font-weight: 600;
@@ -375,12 +429,43 @@
     }
 
     .hero-heading {
+      font-family: 'Clash Display', var(--ds-font);
       font-size: var(--ds-text-impact);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 0.95;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
       color: var(--ds-green-off-white-2);
-      margin-bottom: var(--ds-pad-small);
+    }
+
+    /* Full-width intro row above the photo/terminal grid */
+    .hero-intro {
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--ds-pad-med);
+    }
+
+    #hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(210, 255, 0, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      right: 10%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
     }
 
     .hero-body {
@@ -519,13 +604,18 @@
       display: grid;
       grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       gap: var(--ds-gap);
-      align-items: stretch;
+      align-items: start;
+    }
+
+    .hero-right .hero-photo-card,
+    .hero-right .ds-terminal {
+      height: 560px;
     }
 
     .hero-right .hero-photo {
       aspect-ratio: auto;
+      width: 100%;
       height: 100%;
-      min-height: 380px;
     }
 
     .hero-right .ds-terminal {
@@ -537,6 +627,9 @@
     .hero-right .ds-terminal__body {
       flex: 1;
       font-size: 0.75rem;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .hero-right .ds-terminal__output {
@@ -561,6 +654,11 @@
       gap: var(--ds-gap-med);
     }
 
+    #resume .work-grid,
+    #projects .work-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     .work-card {
       background: var(--ds-dark-green-tint-1);
       border: 1px solid rgba(180, 200, 154, 0.08);
@@ -569,12 +667,16 @@
       display: flex;
       flex-direction: column;
       gap: var(--ds-gap);
-      transition: border-color 0.2s ease, background 0.2s ease;
+      box-shadow: 0 0 0 0 rgba(210, 255, 0, 0);
+      transition: border-color 0.25s ease, background 0.25s ease,
+                  box-shadow 0.25s ease, translate 0.25s ease;
     }
 
     .work-card:hover {
       border-color: rgba(180, 200, 154, 0.16);
       background: rgba(59, 60, 56, 0.8);
+      box-shadow: 0 0 24px rgba(210, 255, 0, 0.06);
+      translate: 0 -2px;
     }
 
     .work-card-featured {
@@ -1030,10 +1132,13 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-right .hero-photo-card,
+      .hero-right .ds-terminal {
+        height: 480px;
+      }
+
       .hero-right .hero-photo {
         aspect-ratio: 4 / 5;
-        height: auto;
-        min-height: 0;
       }
 
       .work-card-featured {
@@ -1042,6 +1147,11 @@
 
       .work-card-featured .wc-visual {
         display: none;
+      }
+
+      #resume .work-grid,
+      #projects .work-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -1076,8 +1186,27 @@
       .nav-links.is-open { display: flex; }
       .nav-toggle { display: flex; }
 
-      .work-grid { grid-template-columns: 1fr; }
+      .work-grid,
+      #resume .work-grid,
+      #projects .work-grid {
+        grid-template-columns: 1fr;
+      }
       .work-card-featured { grid-column: 1; }
+
+      .hero-right .hero-photo-card,
+      .hero-right .ds-terminal {
+        height: 400px;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .stat-value { font-size: 1.25rem; }
+      .stat-label { font-size: 0.5625rem; }
+
+      .marquee__content { font-size: 0.6875rem; }
 
       .about-grid { grid-template-columns: 1fr; gap: var(--ds-pad-large); }
       .contact-grid { grid-template-columns: 1fr; gap: var(--ds-pad-large); }
@@ -1131,26 +1260,20 @@
 
   <!-- ===================== HERO ===================== -->
   <section id="hero">
+    <div class="hero-orb" aria-hidden="true"></div>
     <div class="container">
-      <div class="hero-grid">
+      <div class="hero-shell">
 
-        <!-- Left -->
-        <div>
+        <!-- Intro: eyebrow + heading, full width -->
+        <div class="hero-intro">
           <p class="hero-eyebrow">
             <span class="hero-eyebrow-dot"></span>
             Software Engineer @ Sicredi
           </p>
-          <h1 class="hero-heading">Hi, It's<br>Bruno.</h1>
-          <p class="hero-body">
-            Software engineer working on real-world systems, integrations and event-driven architectures — from IoT telemetry with RabbitMQ and MQTT to applied AI with LLMs, built on Node.js, Python and AWS.
-          </p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">View projects</a>
-            <a href="https://drive.google.com/file/d/1L20WvdKSHuZSFTJ8ZvbCDblOIRTJx6zV/view?usp=sharing" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Download Resume</a>
-          </div>
+          <h1 class="hero-heading">Hi, It's Bruno.</h1>
         </div>
 
-        <!-- Right: profile image + stats -->
+        <!-- Photo (left) + terminal (right), stats spanning below -->
         <div class="hero-right">
           <div class="hero-photo-card">
             <img src="./assets/image_new.png" alt="Bruno Monteiro" class="hero-photo" />
@@ -1199,7 +1322,7 @@
     </div>
   </section>
 
-  <!-- ===================== JOURNEY ===================== -->
+  <!-- ===================== JOURNEY (unchanged) ===================== -->
   <section id="resume">
     <div class="container">
       <div class="section-heading">
@@ -1476,6 +1599,20 @@
     </div>
   </section>
 
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span class="marquee__content">Node.js · Python · FastAPI · NestJS · PostgreSQL · MongoDB · RabbitMQ · MQTT · AWS · Docker · Kubernetes · Event-Driven · CI/CD · LLMs ·</span>
+      <span class="marquee__content">Node.js · Python · FastAPI · NestJS · PostgreSQL · MongoDB · RabbitMQ · MQTT · AWS · Docker · Kubernetes · Event-Driven · CI/CD · LLMs ·</span>
+    </div>
+  </div>
+
+  <!-- ===================== NOISE OVERLAY ===================== -->
+  <svg style="position:fixed;top:-50%;left:-50%;width:200%;height:200%;pointer-events:none;z-index:9999;opacity:0.035;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <rect width="100%" height="100%" filter="url(#noise)" opacity="1"/>
+  </svg>
+
   <!-- ===================== FOOTER ===================== -->
   <footer>
     <div class="container">
@@ -1536,6 +1673,10 @@
   <script src="javascript/terminal.js"></script>
   <script src="javascript/grid-overlay.js"></script>
   <script src="javascript/image-fx.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="javascript/gsap-animations.js"></script>
+  <script src="javascript/cursor-ring.js"></script>
 
 </body>
 </html>
