@@ -406,7 +406,7 @@
       letter-spacing: 0.01em;
       transition: color 0.15s ease;
       position: relative;
-      padding: 10px 2px; /* touch target */
+      padding: 10px 8px; /* touch target */
     }
 
     .nav-links a:not(.nav-cta)::after {
@@ -559,7 +559,7 @@
     .hero-intro {
       position: relative;
       z-index: 1;
-      margin-bottom: var(--ds-pad-med);
+      margin-bottom: 2rem;
     }
 
     #hero {
@@ -733,7 +733,7 @@
 
     .hero-right .hero-photo-card,
     .hero-right .ds-terminal {
-      height: 560px;
+      height: 650px;
     }
 
     .hero-right .hero-photo {
@@ -941,6 +941,134 @@
       height: 160px;
       object-fit: contain;
       border-radius: 10px;
+    }
+
+    /* --- Futuristic HUD project visuals (no image/icon dependencies) --- */
+    .project-visual {
+      position: relative;
+    }
+
+    .pv-hud {
+      position: absolute;
+      inset: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px 14px;
+      font-family: var(--ds-font-mono);
+      border: 1px solid rgba(180, 200, 154, 0.12);
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(180, 200, 154, 0.06) 23px, rgba(180, 200, 154, 0.06) 24px),
+        repeating-linear-gradient(90deg, transparent, transparent 23px, rgba(180, 200, 154, 0.06) 23px, rgba(180, 200, 154, 0.06) 24px);
+      overflow: hidden;
+    }
+
+    .pv-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid var(--ds-lime);
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+
+    .pv-corner--tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+    .pv-corner--tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+    .pv-corner--bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+    .pv-corner--br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+    .project-card:hover .pv-corner { opacity: 1; }
+
+    .pv-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ds-grey-on-track);
+    }
+
+    .pv-id { color: var(--ds-dark-green-tint-2); }
+
+    .pv-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 12px;
+    }
+
+    .pv-bars i {
+      width: 3px;
+      background: var(--ds-lime-off);
+      opacity: 0.7;
+      animation: pv-bar 1.6s ease-in-out infinite;
+    }
+
+    .pv-bars i:nth-child(1) { height: 5px;  animation-delay: 0s; }
+    .pv-bars i:nth-child(2) { height: 9px;  animation-delay: 0.25s; }
+    .pv-bars i:nth-child(3) { height: 12px; animation-delay: 0.5s; }
+
+    @keyframes pv-bar {
+      0%, 100% { transform: scaleY(1); }
+      50%      { transform: scaleY(0.45); }
+    }
+
+    .pv-glyph {
+      align-self: center;
+      width: min(150px, 60%);
+      height: auto;
+      color: var(--ds-lime-off);
+      transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .project-card:hover .pv-glyph {
+      color: var(--ds-lime);
+      filter: drop-shadow(0 0 8px rgba(210, 255, 0, 0.35));
+      transform: scale(1.04);
+    }
+
+    .pv-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--ds-lime);
+    }
+
+    .pv-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ds-lime);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Scan sweep across the HUD on hover */
+    .pv-hud::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -20%;
+      height: 18%;
+      background: linear-gradient(180deg, transparent, rgba(210, 255, 0, 0.05), transparent);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .project-card:hover .pv-hud::after {
+      opacity: 1;
+      animation: pv-scan 1.6s linear infinite;
+    }
+
+    @keyframes pv-scan {
+      from { top: -20%; }
+      to   { top: 120%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pv-bars i, .pv-dot, .project-card:hover .pv-hud::after { animation: none; }
     }
 
     .project-card .wc-main {
@@ -1427,6 +1555,7 @@
 
       .project-visual { min-height: 170px; }
       .project-visual img { height: 120px; }
+      .pv-glyph { width: min(105px, 50%); }
 
       .about-grid { grid-template-columns: 1fr; gap: var(--ds-pad-large); }
       .contact-grid { grid-template-columns: 1fr; gap: var(--ds-pad-large); }
@@ -1500,9 +1629,8 @@
         <div class="hero-intro">
           <p class="hero-eyebrow">
             <span class="hero-eyebrow-dot"></span>
-            Software Engineer @ Sicredi
+            Software Engineer 
           </p>
-          <h1 class="hero-heading">Hi, It's Bruno.</h1>
         </div>
 
         <!-- Photo (left) + terminal (right), stats spanning below -->
@@ -1536,7 +1664,7 @@
 
           <div class="hero-stats">
             <div class="stat">
-              <div class="stat-value">4+</div>
+              <div class="stat-value">5+</div>
               <div class="stat-label">Years of Experience</div>
             </div>
             <div class="stat">
@@ -1569,7 +1697,7 @@
               <span class="wc-meta">Current Role</span>
               <span class="wc-year">2025 - Present</span>
             </div>
-            <h3 class="wc-title">Software Engineer<br>@ Sicredi</h3>
+            <h3 class="wc-title">Software Engineer<br>@Sicredi</h3>
             <p class="wc-desc">
               Software Engineer at Sicredi Vale do Piquiri Abcd PR/SP, building software for one of the largest cooperative financial institutions in Brazil.
             </p>
@@ -1705,6 +1833,7 @@
             <span class="tag">FastAPI</span>
             <span class="tag">LLMs</span>
             <span class="tag">PostgreSQL</span>
+            <span class="tag">SQLServer</span>
             <span class="tag">AWS</span>
           </div>
         </div>
@@ -1716,12 +1845,13 @@
           </div>
           <h3 class="wc-title">Full-Stack<br>Platform</h3>
           <p class="wc-desc">
-            Web interfaces with React and Next.js, APIs with NestJS, maintenance of PHP / Ruby / Node.js systems, Strapi CMS and external integrations including Discord automation.
+            Web interfaces with React and Next.js, APIs with NestJS, maintenance of PHP / GoLang / Ruby / Node.js systems, Strapi CMS and external integrations including Discord automation.
           </p>
           <div class="wc-stack">
             <span class="tag">React</span>
             <span class="tag">Next.js</span>
             <span class="tag">NestJS</span>
+            <span class="tag">GoLang</span>
             <span class="tag">Ruby</span>
             <span class="tag">PHP</span>
             <span class="tag">Strapi</span>
@@ -1742,7 +1872,26 @@
       <div class="work-grid">
         <a href="https://won-games-app.netlify.app" class="work-card project-card" target="_blank" rel="noopener noreferrer">
           <div class="project-visual">
-            <img src="./assets/joystick.svg" alt="Won Games project" loading="lazy" decoding="async" />
+            <div class="pv-hud" aria-hidden="true">
+              <div class="pv-row">
+                <span class="pv-id">PRJ_001 // WON_GAMES</span>
+                <span class="pv-bars"><i></i><i></i><i></i></span>
+              </div>
+              <svg class="pv-glyph" viewBox="0 0 96 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M31 18h34c8 0 14.5 6 15.5 14l2.5 14c.9 5.5-3.5 10-9 10-3.6 0-6.9-2-8.6-5.2L62 44H34l-3.4 6.8C28.9 54 25.6 56 22 56c-5.5 0-9.9-4.5-9-10l2.5-14C16.5 24 23 18 31 18Z"/>
+                <path d="M33 31v10M28 36h10"/>
+                <circle cx="64" cy="32" r="2.6"/>
+                <circle cx="71" cy="39" r="2.6"/>
+              </svg>
+              <div class="pv-row">
+                <span>MODULE: STOREFRONT</span>
+                <span class="pv-status"><span class="pv-dot"></span>ONLINE</span>
+              </div>
+            </div>
+            <span class="pv-corner pv-corner--tl" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--tr" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--bl" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--br" aria-hidden="true"></span>
           </div>
           <div class="wc-main">
             <div class="wc-header">
@@ -1757,7 +1906,27 @@
 
         <a href="https://netspace-landing-page.netlify.app" class="work-card project-card" target="_blank" rel="noopener noreferrer">
           <div class="project-visual">
-            <img src="./assets/logo.svg" alt="Netspace landing page project" loading="lazy" decoding="async" />
+            <div class="pv-hud" aria-hidden="true">
+              <div class="pv-row">
+                <span class="pv-id">PRJ_002 // NETSPACE</span>
+                <span class="pv-bars"><i></i><i></i><i></i></span>
+              </div>
+              <svg class="pv-glyph" viewBox="0 0 96 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="48" cy="33" r="13"/>
+                <ellipse cx="48" cy="33" rx="26" ry="8.5" transform="rotate(-16 48 33)"/>
+                <circle cx="73" cy="22" r="1.8" fill="currentColor" stroke="none"/>
+                <circle cx="20" cy="15" r="1.2" fill="currentColor" stroke="none"/>
+                <circle cx="80" cy="50" r="1.2" fill="currentColor" stroke="none"/>
+              </svg>
+              <div class="pv-row">
+                <span>MODULE: LANDING_PAGE</span>
+                <span class="pv-status"><span class="pv-dot"></span>ONLINE</span>
+              </div>
+            </div>
+            <span class="pv-corner pv-corner--tl" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--tr" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--bl" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--br" aria-hidden="true"></span>
           </div>
           <div class="wc-main">
             <div class="wc-header">
@@ -1772,7 +1941,28 @@
 
         <a href="https://wiki-data-project.netlify.app/#/" class="work-card project-card" target="_blank" rel="noopener noreferrer">
           <div class="project-visual">
-            <img src="./assets/wiki_logo_with_bg.b69f7078.png" alt="Wiki Data project" loading="lazy" decoding="async" />
+            <div class="pv-hud" aria-hidden="true">
+              <div class="pv-row">
+                <span class="pv-id">PRJ_003 // WIKI_DATA</span>
+                <span class="pv-bars"><i></i><i></i><i></i></span>
+              </div>
+              <svg class="pv-glyph" viewBox="0 0 96 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M48 32 26 18M48 32l26-14M48 32 32 50M48 32l20 16M26 18l6 32" opacity="0.7"/>
+                <circle cx="48" cy="32" r="4.5"/>
+                <circle cx="26" cy="18" r="3.5"/>
+                <circle cx="74" cy="18" r="3.5"/>
+                <circle cx="32" cy="50" r="3.5"/>
+                <circle cx="68" cy="48" r="3.5"/>
+              </svg>
+              <div class="pv-row">
+                <span>MODULE: DATA_EXPLORER</span>
+                <span class="pv-status"><span class="pv-dot"></span>ONLINE</span>
+              </div>
+            </div>
+            <span class="pv-corner pv-corner--tl" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--tr" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--bl" aria-hidden="true"></span>
+            <span class="pv-corner pv-corner--br" aria-hidden="true"></span>
           </div>
           <div class="wc-main">
             <div class="wc-header">
@@ -1834,8 +2024,8 @@
   <!-- ===================== MARQUEE ===================== -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
-      <span class="marquee__content">Node.js · Python · FastAPI · NestJS · PostgreSQL · MongoDB · RabbitMQ · MQTT · AWS · Docker · Kubernetes · Event-Driven · CI/CD · LLMs ·</span>
-      <span class="marquee__content">Node.js · Python · FastAPI · NestJS · PostgreSQL · MongoDB · RabbitMQ · MQTT · AWS · Docker · Kubernetes · Event-Driven · CI/CD · LLMs ·</span>
+      <span class="marquee__content">Node.js · Python · FastAPI · NestJS · GoLang · PostgreSQL · MongoDB · RabbitMQ · MQTT · AWS · Docker · Kubernetes · Event-Driven · CI/CD · LLMs ·</span>
+      <span class="marquee__content">Node.js · Python · FastAPI · NestJS · GoLang · · PostgreSQL · MongoDB · RabbitMQ · MQTT · AWS · Docker · Kubernetes · Event-Driven · CI/CD · LLMs ·</span>
     </div>
   </div>
 
@@ -1940,13 +2130,13 @@
             'Node.js / NestJS',
             'Python / FastAPI',
             'React / Next / Vue',
-            'PostgreSQL / MongoDB',
+            'GoLang',
+            'PostgreSQL / MongoDB / SQLServer / MySql',
             'RabbitMQ / MQTT'
           ],
           cloud: ['AWS · EC2 S3 SQS SNS', 'Jenkins CI/CD'],
           focus: [
-            'Event-driven systems',
-            'IoT telemetry',
+            'Event-driven systems',         
             'Applied AI / LLMs'
           ],
           education: 'MBA — USP (2026)',
